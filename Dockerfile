@@ -3,7 +3,6 @@ RUN apk add --no-cache sqlite-static yaml-static
 
 ARG release
 
-WORKDIR /invidious
 COPY ./shard.yml ./shard.yml
 COPY ./shard.lock ./shard.lock
 RUN shards install
@@ -32,7 +31,6 @@ RUN if [ ${release} == 1 ] ; then \
 
 FROM alpine:latest
 RUN apk add --no-cache librsvg ttf-opensans
-WORKDIR /invidious
 RUN addgroup -g 1000 -S invidious && \
     adduser -u 1000 -S invidious -G invidious
 COPY ./assets/ ./assets/
